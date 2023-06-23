@@ -3,7 +3,7 @@ import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Cookies from 'js-cookie';
 
-const targetURL: string = process.env.REACT_APP_API_BASE_URL || "hoge";
+const targetURL: string = process.env.REACT_APP_API_BASE_URL || "";
 
 const Register = () => {
   const [username, setUsername] = React.useState("");
