@@ -17,6 +17,8 @@ function App() {
           <Route path="/" element={<Login />} />
         </Routes>
       </div>
+      <hr />
+      作者:末路ちゃん このサービスはβ版です
     </div>
   );
 }
