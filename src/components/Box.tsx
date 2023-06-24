@@ -25,6 +25,7 @@ const Box = () => {
       .then((response) => {
         if (response.data.success) {
           setMessage("受理しました。メールアドレスに送られたURLにアクセスすると質問が送信されます。");
+          setQuestion("");
         } else {
           alert(response.data.message);
         }
@@ -43,7 +44,7 @@ const Box = () => {
   return (
     <>
       <div>{params.username}に質問を送りましょう！</div>
-      <div>{message}</div>
+      <div className="Message">{message}</div>
       <div>
         メールアドレス：
         <input onChange={(e) => setEmail(e.target.value)}></input>
@@ -51,7 +52,7 @@ const Box = () => {
         <div className="Small">※いたずら防止のためです。送り先には見えません。</div>
       </div>
       <div>
-        <textarea onChange={(e) => setQuestion(e.target.value)}></textarea>
+        <textarea onChange={(e) => setQuestion(e.target.value)} value={question}></textarea>
       </div>
       <div>
         <button
@@ -63,7 +64,7 @@ const Box = () => {
         </button>
       </div>
       <div>
-        自分も <Link to="/register">新規登録</Link>
+        自分も <Link to="/register">投書箱を作る</Link>
       </div>
     </>
   );

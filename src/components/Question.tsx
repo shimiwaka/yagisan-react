@@ -60,7 +60,7 @@ const Question = () => {
       <div>{answerBody}</div>
       <hr />
       <div>
-        <textarea onChange={(e) => setAnswer(e.target.value)}></textarea>
+        <textarea onChange={(e) => setAnswer(e.target.value)}>{answer}</textarea>
       </div>
       <div>
         <button
