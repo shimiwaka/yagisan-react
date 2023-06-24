@@ -15,47 +15,52 @@ const Box = () => {
   const [message, setMessage] = React.useState("");
 
   const sendQuestionRequest = () => {
-    var urlParams = new URLSearchParams()
-    urlParams.append('context', question)
-    urlParams.append('email', email)
-    urlParams.append('boxname', params.username || "")
-  
-    axios.post(targetURL + "/question", urlParams)
-    .then((response) => {
-      if(response.data.success) {
-        setMessage("送信しました。認証のために、メールをご確認ください。");
-      } else {
-        alert(response.data.message);
-      }
-    })
-    .catch((error : any) => {
-      // const errorMessage = error.response.data.message;
-      // const regex = /^Error 1062/;
+    var urlParams = new URLSearchParams();
+    urlParams.append("context", question);
+    urlParams.append("email", email);
+    urlParams.append("boxname", params.username || "");
 
-      // if (regex.test(errorMessage)) {
-      //   alert("ユーザー名かメールアドレスが重複しています。");
-      // }
-      alert("Error!");
-    });
-  }
+    axios
+      .post(targetURL + "/question", urlParams)
+      .then((response) => {
+        if (response.data.success) {
+          setMessage("送信しました。認証のために、メールをご確認ください。");
+        } else {
+          alert(response.data.message);
+        }
+      })
+      .catch((error: any) => {
+        // const errorMessage = error.response.data.message;
+        // const regex = /^Error 1062/;
+
+        // if (regex.test(errorMessage)) {
+        //   alert("ユーザー名かメールアドレスが重複しています。");
+        // }
+        alert("Error!");
+      });
+  };
 
   return (
     <>
       <div>{params.username}に質問をおくる</div>
-      <div>
-        {message}
-      </div>
+      <div>{message}</div>
       <div>
         メールアドレス：
-        <input onChange={(e) => setEmail(e.target.value)}></input><br />
+        <input onChange={(e) => setEmail(e.target.value)}></input>
+        <br />
         ※いたずら防止です。送り先には見えません。
       </div>
       <div>
-        <textarea onChange={(e) => setQuestion(e.target.value)}>
-        </textarea>
+        <textarea onChange={(e) => setQuestion(e.target.value)}></textarea>
       </div>
       <div>
-        <button onClick={() => {sendQuestionRequest()}}>送信</button>
+        <button
+          onClick={() => {
+            sendQuestionRequest();
+          }}
+        >
+          送信
+        </button>
       </div>
       <div>
         <Link to="/register">新規登録</Link>
