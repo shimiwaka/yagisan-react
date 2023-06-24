@@ -13,15 +13,12 @@ type Questions = {
 const MyPage = () => {
   const [questions, setQuestions] = React.useState<Questions[]>([]);
   const [username, setUsername] = React.useState<string>("");
+  const [page, setPage] = React.useState<number>(0);
 
-  React.useEffect(() => {
-    getQuestions();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const getQuestions = () => {
+  const getQuestions = (page : number) => {
     var urlParams = new URLSearchParams();
     urlParams.append("accessToken", Cookies.get("access_token") || "");
+    urlParams.append("page", String(page));
 
     axios
       .post(targetURL + "/box/show", urlParams)
@@ -39,10 +36,37 @@ const MyPage = () => {
       });
   };
 
+  React.useEffect(() => {
+    getQuestions(0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const prev = () => {
+    if (page <= 0){
+      return
+    }
+    const newPage = page -1;
+    setPage(page - 1);
+    getQuestions(newPage);
+  }
+
+  const next = () => {
+    if (questions.length !== 10) {
+      return
+    }
+    const newPage = page + 1;
+    setPage(page + 1);
+    getQuestions(newPage);
+  }
+
   return (
     <>
       <div>
         {username} のマイページは<Link to={"/box/" + username}>こちら</Link> / <Link to="/logout">ログアウト</Link>
+      </div>
+      <div className="Navigater">
+        <button onClick={() => { prev(); } }>&lt;</button>
+        <button onClick={() => { next(); } }>&gt;</button>
       </div>
       <div className="Questions">
         {questions.length === 0
@@ -58,6 +82,10 @@ const MyPage = () => {
                 </div>
               );
             })}
+      </div>
+      <div className="Navigater">
+        <button onClick={() => { prev(); } }>&lt;</button>
+        <button onClick={() => { next(); } }>&gt;</button>
       </div>
     </>
   );
