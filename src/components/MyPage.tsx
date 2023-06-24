@@ -12,6 +12,7 @@ type Questions = {
 
 const MyPage = () => {
   const [questions, setQuestions] = React.useState<Questions[]>([]);
+  const [username, setUsername] = React.useState<string>("");
 
   React.useEffect(() => {
     getQuestions()
@@ -26,6 +27,7 @@ const MyPage = () => {
     .then((response) => {
       if(response.data.success) {
         setQuestions(response.data.questions);
+        setUsername(response.data.username);
       } else {
         alert(response.data.message);
       }
@@ -38,7 +40,9 @@ const MyPage = () => {
 
   return (
     <>
-      <div>マイページ</div>
+      <div>
+        {username} のマイページ
+      </div>
       <div className="Questions">
         {questions.length === 0 ? "対象となる選手がいません。" :
           questions.map(
@@ -46,15 +50,13 @@ const MyPage = () => {
             {
               return (
                 <div>
+                  <hr />
                   {value.body}
                 </div>
               )
             }
           )
         }
-      </div>
-      <div>
-        <Link to="/register">新規登録</Link>
       </div>
     </>
   );
