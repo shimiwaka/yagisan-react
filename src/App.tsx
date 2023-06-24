@@ -7,6 +7,7 @@ import MyPage from "./components/MyPage";
 import Box from "./components/Box";
 import Confirm from "./components/Confirm";
 import Logout from "./components/Logout";
+import Question from "./components/Question";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/box/:username" element={<Box />} />
           <Route path="/confirm/:token" element={<Confirm />} />
+          <Route path="/question/:token" element={<Question />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/" element={<Login />} />
         </Routes>

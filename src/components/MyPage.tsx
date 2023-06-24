@@ -55,6 +55,9 @@ const MyPage = () => {
                 <div>
                   <hr />
                   {value.body}
+                  <div>
+                    <Link to={"/question/" + value.token}>返信する</Link>
+                  </div>
                 </div>
               )
             }
