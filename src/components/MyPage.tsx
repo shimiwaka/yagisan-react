@@ -8,12 +8,19 @@ const targetURL: string = process.env.REACT_APP_API_BASE_URL || "";
 type Questions = {
   body: string;
   token: string;
+  CreatedAt: string;
 };
 
 const MyPage = () => {
   const [questions, setQuestions] = React.useState<Questions[]>([]);
   const [username, setUsername] = React.useState<string>("");
   const [page, setPage] = React.useState<number>(0);
+
+  const formatTime = (timeStr : string) => {
+    timeStr = timeStr.replace("T", " ")
+    timeStr = (timeStr.split("+"))[0]
+    return timeStr;
+  }
 
   const getQuestions = (page : number) => {
     var urlParams = new URLSearchParams();
@@ -74,7 +81,12 @@ const MyPage = () => {
           : questions.map((value, i) => {
               return (
                 <div className="Box">
-                  {value.body}
+                  <div>
+                    {value.body}
+                  </div>
+                  <div>
+                    {formatTime(value.CreatedAt)}
+                  </div>
                   <div>
                     <Link to={"/question/" + value.token}>返信する</Link>
                   </div>

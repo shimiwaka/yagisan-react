@@ -10,7 +10,14 @@ const Question = () => {
   const [questionID, setQuestionID] = React.useState(0);
   const [answer, setAnswer] = React.useState("");
   const [answerBody, setAnswerBody] = React.useState("");
+  const [createdAt, setCreatedAt] = React.useState("");
   const params = useParams();
+
+  const formatTime = (timeStr : string) => {
+    timeStr = timeStr.replace("T", " ")
+    timeStr = (timeStr.split("+"))[0]
+    return timeStr;
+  }
 
   const sendAnswer = () => {
     var urlParams = new URLSearchParams();
@@ -43,6 +50,7 @@ const Question = () => {
           setQuestion(response.data.body);
           setQuestionID(response.data.question_id);
           setAnswerBody(response.data.answer_body);
+          setCreatedAt(response.data.created_at);
         } else {
           alert(response.data.message);
         }
@@ -55,7 +63,8 @@ const Question = () => {
 
   return (
     <>
-      {question}
+      <div>{question}</div>
+      <div>{formatTime(createdAt)}</div>
       <hr />
       <div>{answerBody}</div>
       <hr />
