@@ -1,11 +1,12 @@
 import axios from "axios";
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 const targetURL: string = process.env.REACT_APP_API_BASE_URL || "";
 
 const Box = () => {
   const params = useParams();
+  const navigate = useNavigate()
 
   // React.useEffect(() => {
   //   alert(params.username)
@@ -22,7 +23,7 @@ const Box = () => {
     axios.post(targetURL + "/question", urlParams)
     .then((response) => {
       if(response.data.success) {
-        alert("OK!");
+        navigate("/complete");
       } else {
         alert(response.data.message);
       }

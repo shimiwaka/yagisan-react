@@ -41,10 +41,10 @@ const MyPage = () => {
   return (
     <>
       <div>
-        {username} のマイページ
+        <Link to={"/box/"+username}>{username} のマイページ</Link>
       </div>
       <div className="Questions">
-        {questions.length === 0 ? "対象となる選手がいません。" :
+        {questions.length === 0 ? "質問が何も届いていません。" :
           questions.map(
             (value, i) => 
             {
