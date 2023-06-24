@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <div className="Header">
-        <Link to="/">ゆうびんやぎさん</Link>
+        <Link to="/">やぎさんゆうびん</Link>
       </div>
       <hr />
       <div className="Menu">

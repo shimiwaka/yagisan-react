@@ -32,3 +32,13 @@ textarea {
   font-size: 18px;
   font-weight: bold;
 }
+
+.Box {
+  margin: auto;
+  margin-bottom: 25px;
+  width: 350px;
+  padding: 15px;
+  border: solid;
+  border-width: 1px;
+  border-color: #0000cd;
+}

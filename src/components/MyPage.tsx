@@ -73,8 +73,7 @@ const MyPage = () => {
           ? "質問が何も届いていません。"
           : questions.map((value, i) => {
               return (
-                <div>
-                  <hr />
+                <div className="Box">
                   {value.body}
                   <div>
                     <Link to={"/question/" + value.token}>返信する</Link>
