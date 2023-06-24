@@ -10,7 +10,11 @@ import Confirm from "./components/Confirm";
 function App() {
   return (
     <div className="App">
-      <div className="Header">ゆうびんやぎさん</div>
+      <div className="Header">
+        <Link to="/">
+          ゆうびんやぎさん
+        </Link>
+      </div>
       <hr />
       <div className="Menu">
         <Routes>

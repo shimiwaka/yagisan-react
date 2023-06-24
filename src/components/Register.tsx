@@ -13,14 +13,23 @@ const Register = () => {
 
   const navigate = useNavigate()
 
+  React.useEffect(() => {
+    const accessToken = Cookies.get("access_token")
+    if ( accessToken !== '' ){
+      navigate("/mypage");
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+
   const sendRegisterRequest = () => {
-    var params = new URLSearchParams()
-    params.append('username', username)
-    params.append('password', password)
-    params.append('email', email)
-    params.append('description', description)
+    var urlParams = new URLSearchParams()
+    urlParams.append('username', username)
+    urlParams.append('password', password)
+    urlParams.append('email', email)
+    urlParams.append('description', description)
   
-    axios.post(targetURL + "/register", params)
+    axios.post(targetURL + "/register", urlParams)
     .then((response) => {
       if(response.data.success) {
         Cookies.set('access_token', response.data.token);
