@@ -9,6 +9,7 @@ const Question = () => {
   const [question, setQuestion] = React.useState("");
   const [questionID, setQuestionID] = React.useState(0);
   const [answer, setAnswer] = React.useState("");
+  const [answerBody, setAnswerBody] = React.useState("");
   const params = useParams();
 
   const sendAnswer = () => {
@@ -20,7 +21,7 @@ const Question = () => {
     axios.post(targetURL + "/answer", urlParams)
     .then((response) => {
       if(response.data.success) {
-        alert("送信しました！");
+        setAnswerBody(answer)
       } else {
         alert(response.data.message);
       }
@@ -39,6 +40,7 @@ const Question = () => {
       if(response.data.success) {
         setQuestion(response.data.body)
         setQuestionID(response.data.question_id)
+        setAnswerBody(response.data.answer_body)
       } else {
         alert(response.data.message);
       }
@@ -52,6 +54,10 @@ const Question = () => {
   return (
     <>
       {question}
+      <hr />
+      <div>
+        {answerBody}
+      </div>
       <hr />
       <div>
         <textarea onChange={(e) => setAnswer(e.target.value)}>
