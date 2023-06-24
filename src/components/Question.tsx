@@ -62,11 +62,17 @@ const Question = () => {
   }, []);
 
   return (
-    <>
-      <div>{question}</div>
-      <div>{formatTime(createdAt)}</div>
+    <>      
+      <div className="Box">
+        <div>
+          {question}
+        </div>
+        <div>
+          {formatTime(createdAt)}
+        </div>
+      </div>
       <hr />
-      <div>{answerBody}</div>
+      <div>{answerBody === "" ? "まだ返信していません" : answerBody}</div>
       <hr />
       <div>
         <textarea onChange={(e) => setAnswer(e.target.value)}>{answer}</textarea>
@@ -77,7 +83,7 @@ const Question = () => {
             sendAnswer();
           }}
         >
-          {answer === "" ? "返信" : "更新"}
+          {answerBody === "" ? "返信" : "更新"}
         </button>
       </div>
     </>

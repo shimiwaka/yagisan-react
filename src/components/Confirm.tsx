@@ -13,7 +13,7 @@ const Confirm = () => {
       .get(targetURL + "/confirm/" + params.token)
       .then((response) => {
         if (response.data.success) {
-          setMessage("送信しました！");
+          setMessage("メッセージを送信しました！");
         } else {
           alert(response.data.message);
         }
@@ -25,11 +25,7 @@ const Confirm = () => {
 
   return (
     <>
-      <div>メール認証</div>
       <div>{message}</div>
-      <div>
-        <Link to="/register">新規登録</Link>
-      </div>
     </>
   );
 };
