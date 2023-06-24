@@ -14,7 +14,7 @@ const Register = () => {
   const navigate = useNavigate()
 
   React.useEffect(() => {
-    const accessToken = Cookies.get("access_token")
+    const accessToken = Cookies.get("access_token") || ""
     if ( accessToken !== '' ){
       navigate("/mypage");
     }

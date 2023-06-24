@@ -43,6 +43,9 @@ const MyPage = () => {
       <div>
         <Link to={"/box/"+username}>{username} のマイページ</Link>
       </div>
+      <div>
+        <Link to="/logout">ログアウト</Link>
+      </div>
       <div className="Questions">
         {questions.length === 0 ? "質問が何も届いていません。" :
           questions.map(
