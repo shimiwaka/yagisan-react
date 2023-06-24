@@ -5,6 +5,7 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import MyPage from "./components/MyPage";
 import Box from "./components/Box";
+import Confirm from "./components/Confirm";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/box/:username" element={<Box />} />
+          <Route path="/confirm/:token" element={<Confirm />} />
           <Route path="/" element={<Login />} />
         </Routes>
       </div>
