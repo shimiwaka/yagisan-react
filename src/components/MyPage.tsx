@@ -42,10 +42,7 @@ const MyPage = () => {
   return (
     <>
       <div>
-        <Link to={"/box/" + username}>{username} のマイページ</Link>
-      </div>
-      <div>
-        <Link to="/logout">ログアウト</Link>
+        {username} のマイページは<Link to={"/box/" + username}>こちら</Link> / <Link to="/logout">ログアウト</Link>
       </div>
       <div className="Questions">
         {questions.length === 0

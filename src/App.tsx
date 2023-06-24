@@ -28,7 +28,9 @@ function App() {
         </Routes>
       </div>
       <hr />
-      作者:末路ちゃん このサービスはβ版です
+      <div className="Small">
+        このサービスはβ版です / 作者 : 末路ちゃん(<a href="https://twitter.com/nemucure">@nemucure</a>) 
+      </div>
     </div>
   );
 }

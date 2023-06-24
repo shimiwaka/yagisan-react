@@ -9,7 +9,7 @@ const Register = () => {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [email, setEmail] = React.useState("");
-  const [description, setDescription] = React.useState("");
+  const [description, setDescription] = React.useState("投書箱です。");
 
   const navigate = useNavigate();
 
@@ -41,24 +41,32 @@ const Register = () => {
       .catch((error: any) => {
         const errorMessage = error.response.data.message;
         const regex = /^Error 1062/;
-
-        if (regex.test(errorMessage)) {
+        if (errorMessage === "lack of parameters"){
+          alert("必要な情報が入力されていません。");
+        } else if(errorMessage === "password must be at least 8 characters") {
+          alert("パスワードは最低でも8文字にしてください。");
+        } else if(errorMessage === "username must be at least 3 characters") {
+          alert("ユーザー名は最低でも3文字にしてください。");
+        } else if(errorMessage === "username must be only alphabet, number and _.") {
+          alert("ユーザー名は半角英数字と_のみが使えます。");
+        } else if (regex.test(errorMessage)) {
           alert("ユーザー名かメールアドレスが重複しています。");
+        } else {
+          alert("原因不明のエラーです。");
         }
       });
   };
 
   return (
     <>
-      <div>登録画面</div>
       <div>
         ユーザー名 :{" "}
-        <input onChange={(e) => setUsername(e.target.value)}></input>
+        <input placeholder="3文字以上を指定" onChange={(e) => setUsername(e.target.value)}></input>
       </div>
       <div>
         パスワード :{" "}
         <input
-          placeholder="8文字以上"
+          placeholder="8文字以上を指定"
           type="password"
           onChange={(e) => setPassword(e.target.value)}
         ></input>
@@ -68,7 +76,7 @@ const Register = () => {
         <input onChange={(e) => setEmail(e.target.value)}></input>
       </div>
       <div>
-        自己紹介
+        自己紹介 :{" "}
         <textarea onChange={(e) => setDescription(e.target.value)}>
           投書箱です。
         </textarea>
@@ -83,7 +91,7 @@ const Register = () => {
         </button>
       </div>
       <div>
-        <Link to="/">ログイン</Link>
+        アカウントがすでにある場合は : <Link to="/">ログイン</Link>
       </div>
     </>
   );

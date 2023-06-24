@@ -39,7 +39,6 @@ const Login = () => {
   };
   return (
     <>
-      <div>ログイン画面</div>
       <div>
         ユーザー名 :{" "}
         <input onChange={(e) => setUsername(e.target.value)}></input>
@@ -57,11 +56,11 @@ const Login = () => {
             sendLoginRequest();
           }}
         >
-          登録
+          ログイン
         </button>
       </div>
       <div>
-        <Link to="/register">新規登録</Link>
+        はじめての方は : <Link to="/register">新規登録</Link>
       </div>
     </>
   );
