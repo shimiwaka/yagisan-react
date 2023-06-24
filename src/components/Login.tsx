@@ -30,11 +30,16 @@ const Login = () => {
           Cookies.set("access_token", response.data.token);
           navigate("/mypage");
         } else {
-          alert(response.data.message);
+          alert("サーバーの不明なエラーです。");
         }
       })
       .catch((error: any) => {
-        alert(error.response.data.message);
+        const errorMessage = error.response.data.message;
+        if(errorMessage === "lack of parameters"){
+          alert("入力されていない値があります。");
+        } else {
+          alert("ユーザー名もしくはパスワードが間違っています。");
+        }
       });
   };
   return (
