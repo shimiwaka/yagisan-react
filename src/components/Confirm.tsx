@@ -9,7 +9,6 @@ const Confirm = () => {
   const [message, setMessage] = React.useState("")
 
   React.useEffect(() => {
-    alert(params.token)
     axios.get(targetURL + "/confirm/" + params.token)
     .then((response) => {
       if(response.data.success) {

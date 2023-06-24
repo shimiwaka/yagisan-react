@@ -1,18 +1,18 @@
 import axios from "axios";
 import React from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const targetURL: string = process.env.REACT_APP_API_BASE_URL || "";
 
 const Box = () => {
   const params = useParams();
-  const navigate = useNavigate()
 
   // React.useEffect(() => {
   //   alert(params.username)
   // }, [params.username]);
   const [question, setQuestion] = React.useState("");
   const [email, setEmail] = React.useState("");
+  const [message, setMessage] = React.useState("");
 
   const sendQuestionRequest = () => {
     var urlParams = new URLSearchParams()
@@ -23,7 +23,7 @@ const Box = () => {
     axios.post(targetURL + "/question", urlParams)
     .then((response) => {
       if(response.data.success) {
-        navigate("/complete");
+        setMessage("送信しました。認証のために、メールをご確認ください。");
       } else {
         alert(response.data.message);
       }
@@ -42,6 +42,9 @@ const Box = () => {
   return (
     <>
       <div>{params.username}に質問をおくる</div>
+      <div>
+        {message}
+      </div>
       <div>
         メールアドレス：
         <input onChange={(e) => setEmail(e.target.value)}></input><br />
