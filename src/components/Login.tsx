@@ -35,7 +35,7 @@ const Login = () => {
       })
       .catch((error: any) => {
         const errorMessage = error.response.data.message;
-        if(errorMessage === "lack of parameters"){
+        if (errorMessage === "lack of parameters") {
           alert("入力されていない値があります。");
         } else {
           alert("ユーザー名もしくはパスワードが間違っています。");

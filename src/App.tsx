@@ -29,7 +29,8 @@ function App() {
       </div>
       <hr />
       <div className="Small">
-        このサービスはβ版です / 作者 : 末路ちゃん(<a href="https://twitter.com/nemucure">@nemucure</a>) 
+        このサービスはβ版です / 作者 : 末路ちゃん(
+        <a href="https://twitter.com/nemucure">@nemucure</a>)
       </div>
     </div>
   );

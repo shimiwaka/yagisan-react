@@ -24,7 +24,9 @@ const Box = () => {
       .post(targetURL + "/question", urlParams)
       .then((response) => {
         if (response.data.success) {
-          setMessage("受理しました。メールアドレスに送られたURLにアクセスすると質問が送信されます。");
+          setMessage(
+            "受理しました。メールアドレスに送られたURLにアクセスすると質問が送信されます。"
+          );
           setQuestion("");
         } else {
           alert(response.data.message);
@@ -49,10 +51,15 @@ const Box = () => {
         メールアドレス：
         <input onChange={(e) => setEmail(e.target.value)}></input>
         <br />
-        <div className="Small">※いたずら防止のためです。送り先には見えません。</div>
+        <div className="Small">
+          ※いたずら防止のためです。送り先には見えません。
+        </div>
       </div>
       <div>
-        <textarea onChange={(e) => setQuestion(e.target.value)} value={question}></textarea>
+        <textarea
+          onChange={(e) => setQuestion(e.target.value)}
+          value={question}
+        ></textarea>
       </div>
       <div>
         <button

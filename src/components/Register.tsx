@@ -41,13 +41,15 @@ const Register = () => {
       .catch((error: any) => {
         const errorMessage = error.response.data.message;
         const regex = /^Error 1062/;
-        if (errorMessage === "lack of parameters"){
+        if (errorMessage === "lack of parameters") {
           alert("必要な情報が入力されていません。");
-        } else if(errorMessage === "password must be at least 8 characters") {
+        } else if (errorMessage === "password must be at least 8 characters") {
           alert("パスワードは最低でも8文字にしてください。");
-        } else if(errorMessage === "username must be at least 3 characters") {
+        } else if (errorMessage === "username must be at least 3 characters") {
           alert("ユーザー名は最低でも3文字にしてください。");
-        } else if(errorMessage === "username must be only alphabet, number and _.") {
+        } else if (
+          errorMessage === "username must be only alphabet, number and _."
+        ) {
           alert("ユーザー名は半角英数字と_のみが使えます。");
         } else if (regex.test(errorMessage)) {
           alert("ユーザー名かメールアドレスが重複しています。");
@@ -61,7 +63,10 @@ const Register = () => {
     <>
       <div>
         ユーザー名 :{" "}
-        <input placeholder="3文字以上を指定" onChange={(e) => setUsername(e.target.value)}></input>
+        <input
+          placeholder="3文字以上を指定"
+          onChange={(e) => setUsername(e.target.value)}
+        ></input>
       </div>
       <div>
         パスワード :{" "}

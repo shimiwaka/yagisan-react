@@ -16,13 +16,13 @@ const MyPage = () => {
   const [username, setUsername] = React.useState<string>("");
   const [page, setPage] = React.useState<number>(0);
 
-  const formatTime = (timeStr : string) => {
-    timeStr = timeStr.replace("T", " ")
-    timeStr = (timeStr.split("+"))[0]
+  const formatTime = (timeStr: string) => {
+    timeStr = timeStr.replace("T", " ");
+    timeStr = timeStr.split("+")[0];
     return timeStr;
-  }
+  };
 
-  const getQuestions = (page : number) => {
+  const getQuestions = (page: number) => {
     var urlParams = new URLSearchParams();
     urlParams.append("accessToken", Cookies.get("access_token") || "");
     urlParams.append("page", String(page));
@@ -48,42 +48,55 @@ const MyPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const convertReturns = (rawStr : string) => {
-    const splitStr = rawStr.split("\n")
+  const convertReturns = (rawStr: string) => {
+    const splitStr = rawStr.split("\n");
     let value = "";
 
-    for(let i = 0; i < splitStr.length; i++) {
+    for (let i = 0; i < splitStr.length; i++) {
       value += "<div>" + splitStr[i] + "</div>";
     }
     return value;
-  }
+  };
 
   const prev = () => {
-    if (page <= 0){
-      return
+    if (page <= 0) {
+      return;
     }
-    const newPage = page -1;
+    const newPage = page - 1;
     setPage(page - 1);
     getQuestions(newPage);
-  }
+  };
 
   const next = () => {
     if (questions.length !== 10) {
-      return
+      return;
     }
     const newPage = page + 1;
     setPage(page + 1);
     getQuestions(newPage);
-  }
+  };
 
   return (
     <>
       <div>
-        {username} のマイページは<Link to={"/box/" + username}>こちら</Link> / <Link to="/logout">ログアウト</Link>
+        {username} のマイページは<Link to={"/box/" + username}>こちら</Link> /{" "}
+        <Link to="/logout">ログアウト</Link>
       </div>
       <div className="Navigater">
-        <button onClick={() => { prev(); } }>&lt;</button>
-        <button onClick={() => { next(); } }>&gt;</button>
+        <button
+          onClick={() => {
+            prev();
+          }}
+        >
+          &lt;
+        </button>
+        <button
+          onClick={() => {
+            next();
+          }}
+        >
+          &gt;
+        </button>
       </div>
       <div className="Questions">
         {questions.length === 0
@@ -92,17 +105,11 @@ const MyPage = () => {
               return (
                 <div className="Box">
                   <div>
-                    { value.body.split("\n").map((value2, i2) => {
-                      return (
-                        <div>
-                          {value2}
-                        </div>
-                      )
-                    }) }
+                    {value.body.split("\n").map((value2, i2) => {
+                      return <div>{value2}</div>;
+                    })}
                   </div>
-                  <div>
-                    {formatTime(value.CreatedAt)}
-                  </div>
+                  <div>{formatTime(value.CreatedAt)}</div>
                   <div>
                     <Link to={"/question/" + value.token}>返信する</Link>
                   </div>
@@ -111,8 +118,20 @@ const MyPage = () => {
             })}
       </div>
       <div className="Navigater">
-        <button onClick={() => { prev(); } }>&lt;</button>
-        <button onClick={() => { next(); } }>&gt;</button>
+        <button
+          onClick={() => {
+            prev();
+          }}
+        >
+          &lt;
+        </button>
+        <button
+          onClick={() => {
+            next();
+          }}
+        >
+          &gt;
+        </button>
       </div>
     </>
   );

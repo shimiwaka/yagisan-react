@@ -13,11 +13,11 @@ const Question = () => {
   const [createdAt, setCreatedAt] = React.useState("");
   const params = useParams();
 
-  const formatTime = (timeStr : string) => {
-    timeStr = timeStr.replace("T", " ")
-    timeStr = (timeStr.split("+"))[0]
+  const formatTime = (timeStr: string) => {
+    timeStr = timeStr.replace("T", " ");
+    timeStr = timeStr.split("+")[0];
     return timeStr;
-  }
+  };
 
   const sendAnswer = () => {
     var urlParams = new URLSearchParams();
@@ -62,20 +62,18 @@ const Question = () => {
   }, []);
 
   return (
-    <>      
+    <>
       <div className="Box">
-        <div>
-          {question}
-        </div>
-        <div>
-          {formatTime(createdAt)}
-        </div>
+        <div>{question}</div>
+        <div>{formatTime(createdAt)}</div>
       </div>
       <hr />
       <div>{answerBody === "" ? "まだ返信していません" : answerBody}</div>
       <hr />
       <div>
-        <textarea onChange={(e) => setAnswer(e.target.value)}>{answer}</textarea>
+        <textarea onChange={(e) => setAnswer(e.target.value)}>
+          {answer}
+        </textarea>
       </div>
       <div>
         <button
