@@ -48,6 +48,16 @@ const MyPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const convertReturns = (rawStr : string) => {
+    const splitStr = rawStr.split("\n")
+    let value = "";
+
+    for(let i = 0; i < splitStr.length; i++) {
+      value += "<div>" + splitStr[i] + "</div>";
+    }
+    return value;
+  }
+
   const prev = () => {
     if (page <= 0){
       return
@@ -82,7 +92,13 @@ const MyPage = () => {
               return (
                 <div className="Box">
                   <div>
-                    {value.body}
+                    { value.body.split("\n").map((value2, i2) => {
+                      return (
+                        <div>
+                          {value2}
+                        </div>
+                      )
+                    }) }
                   </div>
                   <div>
                     {formatTime(value.CreatedAt)}
