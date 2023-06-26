@@ -64,7 +64,9 @@ const Question = () => {
   return (
     <>
       <div className="Box">
-        <div>{question}</div>
+        {question.split("\n").map((value, i) => {
+          return <div>{value}</div>;
+        })}
         <div>{formatTime(createdAt)}</div>
       </div>
       <hr />
