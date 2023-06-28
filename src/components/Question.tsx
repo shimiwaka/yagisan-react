@@ -70,7 +70,13 @@ const Question = () => {
         <div>{formatTime(createdAt)}</div>
       </div>
       <hr />
-      <div>{answerBody === "" ? "まだ返信していません" : answerBody}</div>
+      <div>
+        {answerBody === ""
+          ? "まだ返信していません"
+          : answerBody.split("\n").map((value, i) => {
+              return <div>{value}</div>;
+            })}
+      </div>
       <hr />
       <div>
         <textarea onChange={(e) => setAnswer(e.target.value)}>
