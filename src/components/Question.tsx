@@ -1,11 +1,13 @@
 import axios from "axios";
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
 const targetURL: string = process.env.REACT_APP_API_BASE_URL || "";
 
 const Question = () => {
+  const navigate = useNavigate();
+
   const [question, setQuestion] = React.useState("");
   const [questionID, setQuestionID] = React.useState(0);
   const [answer, setAnswer] = React.useState("");
@@ -56,7 +58,13 @@ const Question = () => {
         }
       })
       .catch((error: any) => {
-        alert(error.response.data.message);
+        const errorMessage = error.response.data.message;
+        if (errorMessage === "invalid access token") {
+          Cookies.remove("access_token");
+          navigate("/");
+        } else {
+          alert(errorMessage);
+        }
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

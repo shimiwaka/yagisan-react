@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
 const targetURL: string = process.env.REACT_APP_API_BASE_URL || "";
@@ -12,6 +12,8 @@ type Questions = {
 };
 
 const MyPage = () => {
+  const navigate = useNavigate();
+
   const [questions, setQuestions] = React.useState<Questions[]>([]);
   const [username, setUsername] = React.useState<string>("");
   const [page, setPage] = React.useState<number>(0);
@@ -39,7 +41,12 @@ const MyPage = () => {
       })
       .catch((error: any) => {
         const errorMessage = error.response.data.message;
-        alert(errorMessage);
+        if (errorMessage === "invalid access token") {
+          Cookies.remove("access_token");
+          navigate("/");
+        } else {
+          alert(errorMessage);
+        }
       });
   };
 
