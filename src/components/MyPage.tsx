@@ -9,6 +9,9 @@ type Questions = {
   body: string;
   token: string;
   CreatedAt: string;
+  user_agent: string;
+  ip: string;
+  email: string;
 };
 
 const MyPage = () => {
@@ -22,6 +25,14 @@ const MyPage = () => {
     timeStr = timeStr.replace("T", " ");
     timeStr = timeStr.split("+")[0];
     return timeStr;
+  };
+
+  const showID = (email: string, ip: string) => {
+    if (email == "") {
+      return ip.slice(0, 5);
+    } else {
+      return email.slice(0, 5) + "-" + ip.slice(0, 5);
+    }
   };
 
   const getQuestions = (page: number) => {
@@ -118,6 +129,8 @@ const MyPage = () => {
                     })}
                   </div>
                   <div>{formatTime(value.CreatedAt)}</div>
+                  <div>{showID(value.email, value.ip)}</div>
+                  <div className="UserAgent">{value.user_agent}</div>
                   <div>
                     <Link to={"/question/" + value.token}>返信する</Link>
                   </div>

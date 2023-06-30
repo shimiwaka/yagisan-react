@@ -61,7 +61,7 @@ const Box = () => {
           alert("文字数は10000文字以内にしてください。");
         } else if (errorMessage === "please input email") {
           alert("メールアドレスの入力は必須です。");
-        } else if (errorMessage === "context is blank"){
+        } else if (errorMessage === "context is blank") {
           alert("質問が空白です。");
         } else {
           alert("サーバーの不明なエラーです。");

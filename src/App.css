@@ -42,3 +42,8 @@ textarea {
   border-width: 1px;
   border-color: #0000cd;
 }
+
+.UserAgent {
+  font-size: 12px;
+  color: #555555;
+}
