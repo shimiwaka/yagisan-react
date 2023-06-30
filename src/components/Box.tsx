@@ -70,7 +70,11 @@ const Box = () => {
   return (
     <>
       <div>{params.username}に質問を送りましょう！</div>
-      <div>{description}</div>
+      <div>
+        {description.split("\n").map((value, i) => {
+          return <div>{value}</div>;
+        })}
+      </div>
       <div className="Message">{message}</div>
       <div style={{ display: secureMode ? "block" : "none" }}>
         メールアドレス：
