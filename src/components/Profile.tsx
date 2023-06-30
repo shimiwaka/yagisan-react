@@ -12,6 +12,7 @@ const Profile = () => {
   const [description, setDescription] = React.useState("");
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [secureMode, setSecureMode] = React.useState(true);
   const [confirmPassword, setConfirmPassword] = React.useState("");
   const [email, setEmail] = React.useState("");
 
@@ -26,6 +27,7 @@ const Profile = () => {
           setEmail(response.data.email);
           setUsername(response.data.username);
           setDescription(response.data.description);
+          setSecureMode(response.data.SecureMode);
         } else {
           alert(response.data.message);
         }
@@ -48,6 +50,7 @@ const Profile = () => {
     urlParams.append("newEmail", email);
     urlParams.append("newDescription", description);
     urlParams.append("password", confirmPassword);
+    urlParams.append("newSecureMode", secureMode ? "true" : "false");
     urlParams.append("accessToken", Cookies.get("access_token") || "");
 
     axios
@@ -108,6 +111,14 @@ const Profile = () => {
           onChange={(e) => setDescription(e.target.value)}
           value={description}
         />
+      </div>
+      <div>
+        メールアドレスを要求する :{" "}
+        <input
+          type="checkbox"
+          checked={secureMode}
+          onChange={() => setSecureMode((prevState) => !prevState)}
+        ></input>
       </div>
       <div>
         設定を変更するにはパスワードが必要です :{" "}
