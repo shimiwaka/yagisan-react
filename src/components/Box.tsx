@@ -11,6 +11,7 @@ const Box = () => {
   const [email, setEmail] = React.useState("");
   const [message, setMessage] = React.useState("");
   const [description, setDescription] = React.useState("");
+  const [secureMode, setSecureMode] = React.useState(true);
 
   React.useEffect(() => {
     var urlParams = new URLSearchParams();
@@ -21,6 +22,7 @@ const Box = () => {
       .then((response) => {
         if (response.data.success) {
           setDescription(response.data.description);
+          setSecureMode(response.data.SecureMode);
         } else {
           alert("サーバーの不明なエラーです。");
         }
@@ -41,9 +43,13 @@ const Box = () => {
       .post(targetURL + "/question", urlParams)
       .then((response) => {
         if (response.data.success) {
-          setMessage(
-            "受理しました。メールアドレスに送られたURLにアクセスすると質問が送信されます。"
-          );
+          if (secureMode) {
+            setMessage(
+              "受理しました。メールアドレスに送られたURLにアクセスすると質問が送信されます。"
+            );
+          } else {
+            setMessage("送信しました。");
+          }
           setQuestion("");
         } else {
           alert("サーバーの不明なエラーです。");
@@ -66,7 +72,7 @@ const Box = () => {
       <div>{params.username}に質問を送りましょう！</div>
       <div>{description}</div>
       <div className="Message">{message}</div>
-      <div>
+      <div style={{ display: secureMode ? "block" : "none" }}>
         メールアドレス：
         <input onChange={(e) => setEmail(e.target.value)}></input>
         <br />
