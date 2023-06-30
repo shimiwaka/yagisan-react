@@ -7,12 +7,29 @@ const targetURL: string = process.env.REACT_APP_API_BASE_URL || "";
 const Box = () => {
   const params = useParams();
 
-  // React.useEffect(() => {
-  //   alert(params.username)
-  // }, [params.username]);
   const [question, setQuestion] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [message, setMessage] = React.useState("");
+  const [description, setDescription] = React.useState("");
+
+  React.useEffect(() => {
+    var urlParams = new URLSearchParams();
+    urlParams.append("username", params.username || "");
+
+    axios
+      .post(targetURL + "/box/profile", urlParams)
+      .then((response) => {
+        if (response.data.success) {
+          setDescription(response.data.description);
+        } else {
+          alert("サーバーの不明なエラーです。");
+        }
+      })
+      .catch((error: any) => {
+        const errorMessage = error.response.data.message;
+        alert(errorMessage);
+      });
+  }, [params.username]);
 
   const sendQuestionRequest = () => {
     var urlParams = new URLSearchParams();
@@ -36,7 +53,7 @@ const Box = () => {
         const errorMessage = error.response.data.message;
         if (errorMessage === "character count is over") {
           alert("文字数は10000文字以内にしてください。");
-        } else if(errorMessage === "please input email") {
+        } else if (errorMessage === "please input email") {
           alert("メールアドレスの入力は必須です。");
         } else {
           alert("サーバーの不明なエラーです。");
@@ -47,6 +64,7 @@ const Box = () => {
   return (
     <>
       <div>{params.username}に質問を送りましょう！</div>
+      <div>{description}</div>
       <div className="Message">{message}</div>
       <div>
         メールアドレス：

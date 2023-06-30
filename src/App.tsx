@@ -8,6 +8,7 @@ import Box from "./components/Box";
 import Confirm from "./components/Confirm";
 import Logout from "./components/Logout";
 import Question from "./components/Question";
+import Profile from "./components/Profile";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/confirm/:token" element={<Confirm />} />
           <Route path="/question/:token" element={<Question />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/" element={<Login />} />
         </Routes>
       </div>
