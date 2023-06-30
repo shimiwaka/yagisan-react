@@ -13,12 +13,23 @@ const Question = () => {
   const [answer, setAnswer] = React.useState("");
   const [answerBody, setAnswerBody] = React.useState("");
   const [createdAt, setCreatedAt] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [userAgent, setUserAgent] = React.useState("");
+  const [ip, setIP] = React.useState("");
   const params = useParams();
 
   const formatTime = (timeStr: string) => {
     timeStr = timeStr.replace("T", " ");
     timeStr = timeStr.split("+")[0];
     return timeStr;
+  };
+
+  const showID = (email: string, ip: string) => {
+    if (email == "") {
+      return ip.slice(0, 5);
+    } else {
+      return email.slice(0, 5) + "-" + ip.slice(0, 5);
+    }
   };
 
   const sendAnswer = () => {
@@ -53,6 +64,9 @@ const Question = () => {
           setQuestionID(response.data.question_id);
           setAnswerBody(response.data.answer_body);
           setCreatedAt(response.data.created_at);
+          setIP(response.data.ip);
+          setEmail(response.data.email);
+          setUserAgent(response.data.useragent);
         } else {
           alert(response.data.message);
         }
@@ -76,6 +90,8 @@ const Question = () => {
           return <div>{value}</div>;
         })}
         <div>{formatTime(createdAt)}</div>
+        <div>{showID(email, ip)}</div>
+        <div className="UserAgent">{userAgent}</div>
       </div>
       <hr />
       <div>
