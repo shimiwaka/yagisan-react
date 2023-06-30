@@ -4,6 +4,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
 const targetURL: string = process.env.REACT_APP_API_BASE_URL || "";
+const viewerURL: string = process.env.REACT_APP_VIEWER_BASE_URL || "";
 
 const Question = () => {
   const navigate = useNavigate();
@@ -43,6 +44,7 @@ const Question = () => {
       .then((response) => {
         if (response.data.success) {
           setAnswerBody(answer);
+          window.location.href = viewerURL + "/question/" + params.token;
         } else {
           alert(response.data.message);
         }
