@@ -29,17 +29,18 @@ const Box = () => {
           );
           setQuestion("");
         } else {
-          alert(response.data.message);
+          alert("サーバーの不明なエラーです。");
         }
       })
       .catch((error: any) => {
-        // const errorMessage = error.response.data.message;
-        // const regex = /^Error 1062/;
-
-        // if (regex.test(errorMessage)) {
-        //   alert("ユーザー名かメールアドレスが重複しています。");
-        // }
-        alert("Error!");
+        const errorMessage = error.response.data.message;
+        if (errorMessage === "character count is over") {
+          alert("文字数は10000文字以内にしてください。");
+        } else if(errorMessage === "please input email") {
+          alert("メールアドレスの入力は必須です。");
+        } else {
+          alert("サーバーの不明なエラーです。");
+        }
       });
   };
 
