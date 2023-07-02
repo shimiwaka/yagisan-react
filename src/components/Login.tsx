@@ -42,17 +42,27 @@ const Login = () => {
         }
       });
   };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.nativeEvent.isComposing || e.key !== "Enter") return;
+    sendLoginRequest();
+  };
+
   return (
     <>
       <div>
         ユーザー名 :{" "}
-        <input onChange={(e) => setUsername(e.target.value)}></input>
+        <input
+          onChange={(e) => setUsername(e.target.value)}
+          onKeyDown={handleKeyDown}
+        ></input>
       </div>
       <div>
         パスワード :{" "}
         <input
           type="password"
           onChange={(e) => setPassword(e.target.value)}
+          onKeyDown={handleKeyDown}
         ></input>
       </div>
       <div>
