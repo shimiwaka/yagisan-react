@@ -37,6 +37,8 @@ const Login = () => {
         const errorMessage = error.response.data.message;
         if (errorMessage === "lack of parameters") {
           alert("入力されていない値があります。");
+        } else if (errorMessage === "account is locked") {
+          alert("アカウントがロックされています。30分後に試してください。");
         } else {
           alert("ユーザー名もしくはパスワードが間違っています。");
         }
