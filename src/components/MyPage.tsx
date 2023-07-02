@@ -97,7 +97,7 @@ const MyPage = () => {
   return (
     <>
       <div>
-        {username} のマイページは<Link to={"/box/" + username}>こちら</Link> /{" "}
+        {username} のマイページは<Link to={"/box/" + username}>こちら</Link><br />
         <Link to="/profile">設定変更</Link> /{" "}
         <Link to="/logout">ログアウト</Link>
       </div>

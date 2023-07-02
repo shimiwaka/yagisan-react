@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-
+import { TwitterIcon, TwitterShareButton } from "react-share";
 const targetURL: string = process.env.REACT_APP_API_BASE_URL || "";
 
 const Box = () => {
@@ -72,6 +72,9 @@ const Box = () => {
   return (
     <>
       <div>{params.username}に質問を送りましょう！</div>
+      <TwitterShareButton url={window.location.href} title={description}>
+        <TwitterIcon size="32"/>
+      </TwitterShareButton>
       <div>
         {description.split("\n").map((value, i) => {
           return <div>{value}</div>;
