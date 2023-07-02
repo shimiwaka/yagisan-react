@@ -33,8 +33,12 @@ function App() {
       </div>
       <hr />
       <div className="Small">
-        このサービスはβ版です / <Link to="/help">ヘルプ</Link> / 作者 : 末路ちゃん(
-        <a href="https://twitter.com/nemucure" target="_blank">@nemucure</a>)
+        このサービスはβ版です / <Link to="/help">ヘルプ</Link> / 作者 :
+        末路ちゃん(
+        <a href="https://twitter.com/nemucure" target="_blank">
+          @nemucure
+        </a>
+        )
       </div>
     </div>
   );

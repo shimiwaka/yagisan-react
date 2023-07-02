@@ -73,7 +73,7 @@ const Box = () => {
     <>
       <div>{params.username}に質問を送りましょう！</div>
       <TwitterShareButton url={window.location.href} title={description}>
-        <TwitterIcon size="32"/>
+        <TwitterIcon size="32" />
       </TwitterShareButton>
       <div>
         {description.split("\n").map((value, i) => {
