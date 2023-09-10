@@ -52,3 +52,9 @@ ul {
   width: 600px;
   margin: auto;
 }
+
+@media only screen and (max-device-width : 480px) {
+  .Box {
+    width: 80%;
+  }
+}
